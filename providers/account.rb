@@ -149,7 +149,7 @@ def user_resource(exec_action)
     password  new_resource.password if new_resource.password
     system    new_resource.system_user # ~FC048: Prefer Mixlib::ShellOut
     non_unique non_unique
-    manage_home true
+    manage_home @manage_home
     action    :nothing
   end
   r.run_action(exec_action)
