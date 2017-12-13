@@ -38,7 +38,7 @@ end
 
 action :create do # ~FC017: LWRP does not notify when updated
   user_resource             :create
-  home_dir_resource         :create
+  home_dir_resource         :create if @manage_home
   home_ssh_dir_resource     :create if @ssh_keygen || !new_resource.ssh_keys.empty?
   authorized_keys_resource  :create
   keygen_resource           :create
@@ -54,7 +54,7 @@ end
 
 action :modify do # ~FC017: LWRP does not notify when updated
   user_resource             :modify
-  home_dir_resource         :create
+  home_dir_resource         :create if @manage_home
   home_ssh_dir_resource     :create if @ssh_keygen || !new_resource.ssh_keys.empty?
   authorized_keys_resource  :create
   keygen_resource           :create
@@ -63,7 +63,7 @@ end
 
 action :manage do # ~FC017: LWRP does not notify when updated
   user_resource             :manage
-  home_dir_resource         :create
+  home_dir_resource         :create if @manage_home
   home_ssh_dir_resource     :create if @ssh_keygen || !new_resource.ssh_keys.empty?
   authorized_keys_resource  :create
   keygen_resource           :create
@@ -72,7 +72,7 @@ end
 
 action :lock do # ~FC017: LWRP does not notify when updated
   user_resource             :lock
-  home_dir_resource         :create
+  home_dir_resource         :create if @manage_home
   home_ssh_dir_resource     :create if @ssh_keygen || !new_resource.ssh_keys.empty?
   authorized_keys_resource  :create
   keygen_resource           :create
@@ -81,7 +81,7 @@ end
 
 action :unlock do # ~FC017: LWRP does not notify when updated
   user_resource             :unlock
-  home_dir_resource         :create
+  home_dir_resource         :create if @manage_home
   home_ssh_dir_resource     :create if @ssh_keygen || !new_resource.ssh_keys.empty?
   authorized_keys_resource  :create
   keygen_resource           :create
